@@ -4,7 +4,7 @@ local wibox = require("wibox")
 
 --{{---| Colors |---------------------------------------------------------------
 --  font    = "Terminess Powerline 8"
-  font    = "Gohu GohuFont 1q"
+  font    = "Gohu GohuFont 11"
 --  font    = "Monospace 11"
   markup = '<span font="' .. font .. '">'
   fontcolor = "#FFFFFF"

@@ -29,14 +29,8 @@ function run_once(cmd)
  end
 
 run_once("compton")
---run_once("unclutter -idle 10")
---run_once("mpd-notification")
---run_once("mpd .mpdconf")
---run_once("udiskie")
 run_once("xbindkeys")
 run_once("pulseaudio --start")
---run_once("urxvtd -q -o")
---run_once("thunar --daemon")
 run_once("pcmanfm -d")
 --run_once("tint2")
 --run_once("syndaemon -t -k -i 0.5 &")
@@ -83,7 +77,7 @@ themes = confdir .. "/themes"
 active_theme = themes .. "/edge"
 
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/davide/.config/awesome/themes/edge/theme.lua")
+beautiful.init(active_theme .. "/theme.lua")
 
 --terminal = "urxvtc --background-expr 'rootalign keep { load \"/home/davide/wp/wallpaper_urxvt.jpg\" }'"
 terminal = "terminator"
