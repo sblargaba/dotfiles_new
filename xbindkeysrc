@@ -1,0 +1,35 @@
+# Decrease Brightness
+#"light -U 10; echo 'brightness_notify()' | awesome-client"
+"xbacklight -dec 10; echo notify\(\'Brightness: \', `xbacklight -get`\) | awesome-client"
+   XF86MonBrightnessDown
+# Increase Brightness
+#"light -A 10; echo 'brightness_notify()' | awesome-client"
+"xbacklight -inc 10; echo notify\(\'Brightness: \', `xbacklight -get`\) | awesome-client"
+   XF86MonBrightnessUp
+
+
+# Increase volume
+#"pamixer --increase 5; echo 'volwidget.bar.update()' | awesome-client -"
+#"xbacklight -inc 10 && echo notify\(\'Brightness: \', `xbacklight -get`\) | awesome-client"
+"pulseaudio-ctl up; echo notify\(\'Volume: \', `if [[ $(pamixer --get-mute) = 'true' ]]; then echo \"Muted\"; else echo $(pulseaudio-ctl full-status | cut -d' ' -f 1); fi`\) | awesome-client"
+   XF86AudioRaiseVolume
+# Decrease volume
+#"pamixer --decrease 5; echo 'volwidget.bar.update()' | awesome-client -"
+#"pulseaudio-ctl down; echo 'volwidget.bar.update()' | awesome-client"
+"pulseaudio-ctl down; echo notify\(\'Volume: \', `if [[ $(pamixer --get-mute) = 'true' ]]; then echo \"Muted\"; else echo $(pulseaudio-ctl full-status | cut -d' ' -f 1); fi`\) | awesome-client"
+   XF86AudioLowerVolume
+# Toggle mute
+#"pamixer --toggle-mute mute; echo 'volwidget.bar.update()' | awesome-client -"
+#"pulseaudio-ctl mute; echo 'volwidget.bar.update()' | awesome-client"
+"pulseaudio-ctl mute; echo notify\(\'Volume: \', `if [[ $(pamixer --get-mute) = 'true' ]]; then echo \"Muted\"; else echo \"Unmuted\"; fi`\) | awesome-client"
+   XF86AudioMute
+
+
+# Disable trackpad
+#
+
+
+# Lock screen
+#"scrot /home/bau/wp/slimlock.png && convert /home/bau/wp/slimlock.png -blur 6x3 /home/bau/wp/slimlock.png && slimlock"
+"~/.config/lockie.sh"
+   XF86ScreenSaver

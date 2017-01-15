@@ -1,0 +1,48 @@
+URxvt*termName: rxvt-unicode
+
+URxvt*background : #000000
+URxvt*foreground : #eceff1
+! black
+URxvt*color0 : #000000
+URxvt*color8 : #555555
+! red
+URxvt*color1 : #aa0000
+URxvt*color9 : #ff5555
+! green
+URxvt*color2 : #00aa00
+URxvt*color10 : #55ff55
+! yellow
+URxvt*color3 : #aa5500
+URxvt*color11 : #ffff55
+! blue
+URxvt*color4 : #0000aa
+URxvt*color12 : #5555ff
+! magenta
+URxvt*color5 : #aa00aa
+URxvt*color13 : #ff55ff
+! cyan
+URxvt*color6 : #00aaaa
+URxvt*color14 : #55ffff
+! white
+URxvt*color7 : #aaaaaa
+URxvt*color15 : #ffffff
+
+! rxvt-unicode specific settings
+URxvt*scrollBar: False
+! URxvt*depth: 32
+! URxvt*background: [85]#000000
+! xterm*font:              -*-ohsnap.icons-medium-r-*-*-14-*-*-*-*-*-*-*
+
+URxvt*intensityStyles: True
+URxvt*background-expr: rootalign keep { load "/home/bau/wp/wallpaper_urxvt.jpg" }
+URxvt.perl-ext-common:  ...,vtwheel,...
+
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+Urxvt*saveLines:            30000
+
+! Sane defaults for dzen2
+dzen2.font: xft:Share Tech:pixelsize=10
+dzen2.foreground: #22EE11
+dzen2.background: black
