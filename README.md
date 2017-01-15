@@ -2,12 +2,14 @@ Programs used:
 * awesomewm
 * lain
 * xbindkeys
+
 ---
 #### In xbindkeysrc
 * xbacklight
 * pulseaudio-ctl
 * i3lock
 * imagemagick
+
 ---
 #### In Awesome rc.lua
 * compton
@@ -17,4 +19,5 @@ Programs used:
 * terminator
 * nm-applet
 ---
+
 set wallpaper in `config/awesome/themes/edge/theme.lua`
