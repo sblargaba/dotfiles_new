@@ -17,8 +17,8 @@ theme.icon_theme = "Numix-Circle" -- Replace the string for the theme you want t
 --theme.font      = "Terminess Powerline 8"
 --theme.font      = "Source Code Pro for Powerline 8"
 --theme.font      = "DejaVu Sans 12"
---theme.font      = "Ohsnap 11"
-theme.font = "Monospace 11"
+theme.font      = "Gohu GohuFont 11"
+--theme.font = "Monospace 11"
 --}
 
 -- {{{ Colors
