@@ -18,6 +18,6 @@ Programs used:
 * firefox
 * terminator
 * nm-applet
----
 
+---
 set wallpaper in `config/awesome/themes/edge/theme.lua`
