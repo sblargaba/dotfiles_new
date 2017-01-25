@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/davide/.config/oh-my-zsh
+export ZSH=$HOME/.config/oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -91,6 +91,29 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias weather="curl -s wttr.in/Palma | head -n 37 && curl -s wttr.in/Moon | head -n 24"
+alias screenlayout="$HOME/.config/screenlayout.sh"
+##### GTD
+alias in='task add +in'
+
+function tickle () {
+  deadline=$1
+  shift
+  in +tickle wait:$deadline $@
+}
+alias tick=tickle
+
+function documentation() {
+	vim "dotfiles/doc/$1.md"
+}
+alias doc=documentation
+
+##### SSH-AGENT
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent | head -n 2 > ~/.ssh/ssh-agent-pid
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh/ssh-agent-pid)"
+fi
 
 ##### STARTX
 if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]

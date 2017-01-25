@@ -54,9 +54,9 @@ local wibox = require("wibox")
      local last_day = os.date("%d", os.time({ day = 1, year = cal_year,
                                               month = cal_month + 1}) - 86400)
      local first_day = os.time({ day = 1, month = cal_month, year = cal_year})
-     local first_day_in_week =
-        os.date("%w", first_day)
-     local result = "do lu ma me gi ve sa\n"
+     local first_day_in_week = os.date("%w", first_day)
+     --local result = "do lu ma me gi ve sa\n"
+     local result = "Su Mo Tu We Th Fr Sa\n"
      for i = 1, first_day_in_week do
         result = result .. "   "
      end

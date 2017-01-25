@@ -7,7 +7,7 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
-local naughty = require("naughty")
+naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Sid
@@ -134,7 +134,7 @@ end
 --    { "manual", terminal .. " -e man awesome" },
 --    { "edit config", editor_cmd .. " " .. awesome.conffile },
 --    { "restart", awesome.restart },
---    { "quit", function() awesome.quit() end}
+--    { "quit", function() awesome.quit() end}100
 -- }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -156,21 +156,22 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Volume control
 --volume = lain.widgets.pulsebar{vertical=True})
 -- Battery
-bg = nil
 btr = lain.widgets.bat({
     batteries = {"BAT0","BAT1"},
     settings = function()
-        if bat_now.perc < 99 then
-            if bat_now.n_perc[2] < 6 then bg = theme.bg_red
+        local out = ""
+        if bat_now.status == "Discharging" then
+            if bat_now.n_perc[2] < 50 then bg = theme.bg_red
             else bg = theme.bg_green end
-        end
-        local out = markup.bg.color(bg, bat_now.perc .. "%")
+            out = markup.bg.color(bg, bat_now.perc .. "%")
+        else bg = nil end
         widget:set_markup(out)
     end
 })
 batcont = wibox.container.margin(btr, 3, 3, 5, 5)
 batwidget = wibox.container.background(batcont, bg)
-btr:connect_signal("widget::redraw_needed", function() batwidget = wibox.container.background(batcont, bg) end)
+--btr:connect_signal("widget::redraw_needed", function() batwidget = wibox.container.background(batcont, bg) end)
+--btr:connect_signal("widget::redraw_needed", function() tst("battery updated") end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -415,7 +416,9 @@ clientkeys = awful.util.table.join(
               {description = "toggle floating", group = "client"}),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
-    awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
+    awful.key({ modkey, "Shift"   }, "Down",   function (c) c:move_to_screen()               end,
+              {description = "move to screen", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "Up",     function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
@@ -625,6 +628,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 function tst(val)
     naughty.notify({text = val})
 end
+
+function btrtst(signal) btr:emit_signal(signal) end
 
 ids = {}
 function notify(id, val)
