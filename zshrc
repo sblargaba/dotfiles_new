@@ -103,7 +103,7 @@ function tickle () {
 alias tick=tickle
 
 function documentation() {
-	vim "dotfiles/doc/$1.md"
+	vim "$HOME/dotfiles/doc/$1.md"
 }
 alias doc=documentation
 
