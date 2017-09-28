@@ -93,6 +93,8 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    -- awful.layout.suit.spiral.name,
+    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.tile,
     awful.layout.suit.fair,
     -- awful.layout.suit.tile.left,
@@ -154,22 +156,22 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Volume control
---volume = lain.widgets.pulsebar{vertical=True})
+--volume = lain.widget.pulsebar{vertical=True})
 -- Battery
-btr = lain.widgets.bat({
-    batteries = {"BAT0","BAT1"},
-    settings = function()
-        local out = ""
-        if bat_now.status == "Discharging" then
-            if bat_now.n_perc[2] < 50 then bg = theme.bg_red
-            else bg = theme.bg_green end
-            out = markup.bg.color(bg, bat_now.perc .. "%")
-        else bg = nil end
-        widget:set_markup(out)
-    end
-})
-batcont = wibox.container.margin(btr, 3, 3, 5, 5)
-batwidget = wibox.container.background(batcont, bg)
+-- btr = lain.widget.bat({
+--     batteries = {"BAT0","BAT1"},
+--     settings = function()
+--         local out = ""
+--         if bat_now.status == "Discharging" then
+--             if bat_now.n_perc[2] < 50 then bg = theme.bg_red
+--             else bg = theme.bg_green end
+--             out = markup.bg.color(bg, bat_now.perc .. "%")
+--         else bg = nil end
+--         widget:set_markup(out)
+--     end
+-- })
+-- batcont = wibox.container.margin(btr, 3, 3, 5, 5)
+-- batwidget = wibox.container.background(batcont, bg)
 --btr:connect_signal("widget::redraw_needed", function() batwidget = wibox.container.background(batcont, bg) end)
 --btr:connect_signal("widget::redraw_needed", function() tst("battery updated") end)
 
@@ -187,8 +189,8 @@ local taglist_buttons = awful.util.table.join(
                                                   client.focus:toggle_tag(t)
                                               end
                                           end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+                    awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
+                    awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end)
                 )
 
 local tasklist_buttons = awful.util.table.join(
@@ -264,7 +266,7 @@ awful.screen.connect_for_each_screen(function(s)
         expand = "none",
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            batwidget,
+            -- batwidget,
             s.mytaglist,
             spr,
             s.mypromptbox,
@@ -429,6 +431,13 @@ clientkeys = awful.util.table.join(
             c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
+    awful.key({ modkey, "Shift"   }, "m",
+        function (c)
+            c.maximized_horizontal = not c.maximized_horizontal
+            c.maximized_vertical = not c.maximized_vertical
+            c:raise()
+        end ,
+        {description = "unfuck client", group = "client"}),
     awful.key({ modkey,           }, "m",
         function (c)
             c.maximized = not c.maximized
@@ -515,7 +524,11 @@ awful.rules.rules = {
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-                     size_hints_honor = false
+                     size_hints_honor = false,
+                     maximized_vertical   = false,
+                     maximized_horizontal = false,
+                     floating = false,
+                     maximized = false
      }
     },
 
