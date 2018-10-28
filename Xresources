@@ -1,48 +1,62 @@
-URxvt*termName: rxvt-unicode
+! special
+*.foreground:   #c5c8c6
+! *.background:   #1d1f21
+*.background:   #120825
+*.cursorColor:  #c5c8c6
 
-URxvt*background : #000000
-URxvt*foreground : #eceff1
 ! black
-URxvt*color0 : #000000
-URxvt*color8 : #555555
+*.color0:       #282a2e
+*.color8:       #373b41
+
 ! red
-URxvt*color1 : #aa0000
-URxvt*color9 : #ff5555
+*.color1:       #a54242
+*.color9:       #cc6666
+
 ! green
-URxvt*color2 : #00aa00
-URxvt*color10 : #55ff55
+*.color2:       #8c9440
+*.color10:      #b5bd68
+
 ! yellow
-URxvt*color3 : #aa5500
-URxvt*color11 : #ffff55
+*.color3:       #de935f
+*.color11:      #f0c674
+
 ! blue
-URxvt*color4 : #0000aa
-URxvt*color12 : #5555ff
+*.color4:       #5f819d
+*.color12:      #81a2be
+
 ! magenta
-URxvt*color5 : #aa00aa
-URxvt*color13 : #ff55ff
+*.color5:       #85678f
+*.color13:      #b294bb
+
 ! cyan
-URxvt*color6 : #00aaaa
-URxvt*color14 : #55ffff
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
 ! white
-URxvt*color7 : #aaaaaa
-URxvt*color15 : #ffffff
+*.color7:       #707880
+*.color15:      #c5c8c6
 
-! rxvt-unicode specific settings
-URxvt*scrollBar: False
-! URxvt*depth: 32
-! URxvt*background: [85]#000000
-! xterm*font:              -*-ohsnap.icons-medium-r-*-*-14-*-*-*-*-*-*-*
+! st.font: Liberation Mono:pixelsize=12:antialias=true:autohint=true;
+*.font: Gohu GohuFont:pixelsize=14:antialias=true:autohint=true;
+*.opacity: 190
 
-URxvt*intensityStyles: True
-URxvt*background-expr: rootalign keep { load "/home/bau/wp/wallpaper_urxvt.jpg" }
-URxvt.perl-ext-common:  ...,vtwheel,...
+*.internalBorder: 0
+*.border: 0
+.borderpx: 0
+
 
 URxvt*scrollTtyOutput:      false
 URxvt*scrollWithBuffer:     true
 URxvt*scrollTtyKeypress:    true
-Urxvt*saveLines:            30000
+URxvt*saveLines:            30000
 
-! Sane defaults for dzen2
-dzen2.font: xft:Share Tech:pixelsize=10
-dzen2.foreground: #22EE11
-dzen2.background: black
+URxvt*.font: xft:Gohu GohuFont:pixelsize=14:antialias=true:autohint=true;
+! URxvt*.font: -*-gohufont-medium-*-*-14-*-*-*-*-*-*-*
+! URxvt*.font: -*-terminesspowerline-medium-*-*-*-14-*-*-*-*-*-*-*
+! URxvt*.font: xft:GohuFont Nerd Font Mono:style=uni-14:pixelsize=14;
+! URxvt*.boldFont: -*-gohufont-bold-*-*-*-14-*-*-*-*-*-*-*
+URxvt*.depth: 32
+URxvt*background: [75]#120825
+!URxvt*.intensityStyles: True
+!URxvt*.background-expr: rootalign keep { load "/home/davide/wp/wallpaper_urxvt.jpg" }
+URxvt*.scrollBar: false

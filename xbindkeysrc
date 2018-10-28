@@ -22,5 +22,11 @@
    XF86AudioMute
 
 # Lock screen
-"~/.config/lockie.sh"
+"i3lock -o --fuzzy"
    XF86ScreenSaver
+
+# Lock screen
+"i3lock -o --fuzzy"
+   XF86Mail
+
+

@@ -15,6 +15,9 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local bar = require("bar")
 lain = require("lain")
 local markup = lain.util.markup
+-- pomodoro
+local pomodoro = require("./pomodoro/init")
+pomodoro.init()
 
 menubar.geometry = { y = 540  }
 
@@ -29,8 +32,9 @@ function run_once(cmd)
  end
 
 run_once("compton")
+run_once("urxvtd")
 run_once("xbindkeys")
-run_once("pulseaudio --start")
+--run_once("pulseaudio --start")
 run_once("pcmanfm -d")
 --run_once("tint2")
 --run_once("syndaemon -t -k -i 0.5 &")
@@ -38,6 +42,8 @@ run_once("pcmanfm -d")
 --run_once("connman-ui-gtk")
 run_once("nm-applet")
 run_once("redshift")
+run_once("xset r rate 200 30")
+run_once("clipit")
 -- }}}
 
 -- {{{ Localization
@@ -80,7 +86,9 @@ active_theme = themes .. "/edge"
 beautiful.init(active_theme .. "/theme.lua")
 
 --terminal = "urxvtc --background-expr 'rootalign keep { load \"/home/davide/wp/wallpaper_urxvt.jpg\" }'"
-terminal = "terminator"
+-- terminal = "terminator"
+terminal = "urxvtc"
+-- terminal = "xst"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -272,14 +280,19 @@ awful.screen.connect_for_each_screen(function(s)
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget (TODO: set expand)
+        -- spr,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- mykeyboardlayout,
             wibox.widget.systray(),
             spr,
+            pomodoro.widget,
+            spr,
+            pomodoro.icon_widget,
+            spr,
             mytextclock,
             spr,
---            volume.bar,
+            -- volume.bar,
             s.mylayoutbox,
         },
     }
@@ -347,7 +360,7 @@ globalkeys = awful.util.table.join(
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
-    awful.key({ "Mod1", "Control" }, "l", function () awful.util.spawn_with_shell(home.. "/.config/lockie.sh") end,
+    awful.key({ "Mod1", "Control" }, "l", function () awful.util.spawn_with_shell("i3lock -o --fuzzy") end,
               {description = "lock screen", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
@@ -527,7 +540,7 @@ awful.rules.rules = {
                      size_hints_honor = false,
                      maximized_vertical   = false,
                      maximized_horizontal = false,
-                     floating = false,
+                     -- floating = false,
                      maximized = false
      }
     },
@@ -554,10 +567,12 @@ awful.rules.rules = {
         },
         role = {
           "AlarmWindow",  -- Thunderbird's calendar.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools
         }
       }, properties = { floating = true }},
-
+    { rule_any = { role = { "gnome-calculator" }
+      }, properties = { floating = true, ontop = true },
+    },
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = false }

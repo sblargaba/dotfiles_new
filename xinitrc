@@ -1,7 +1,10 @@
 #!/bin/sh
 
-xrdb ~/.Xresources
-
-setxkbmap gb
+xrdb ~/.Xresources &
+numlockx &
+setxkbmap gb &
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) &
+export SSH_AUTH_SOCK &
 # start some nice programs
 exec awesome
+#exec bspwm
