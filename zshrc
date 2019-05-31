@@ -1,9 +1,23 @@
+#zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-powerline-daemon -q
+#powerline-daemon -q
 export XDG_CONFIG_HOME=$HOME/.config
- . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+#source /home/davide/.config/oh-my-zsh/themes/powerlevel10k/powerlevel10k.zsh-theme
+POWERLEVEL9K_STATUS_OK=false
+POWERLEVEL9K_VCS_SHORTEN_LENGTH=9
+POWERLEVEL9K_VCS_SHORTEN_MIN_LENGTH=11
+POWERLEVEL9K_VCS_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_VCS_SHORTEN_DELIMITER=".."
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv aws background_jobs)
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
 
 autoload -U +X bashcompinit && bashcompinit
@@ -58,3 +72,4 @@ if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]
 then exec startx
 fi
 
+#zprof

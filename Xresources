@@ -36,8 +36,6 @@
 *.color7:       #707880
 *.color15:      #c5c8c6
 
-! st.font: Liberation Mono:pixelsize=12:antialias=true:autohint=true;
-*.font: Gohu GohuFont:pixelsize=14:antialias=true:autohint=true;
 *.opacity: 190
 
 *.internalBorder: 0
@@ -50,11 +48,11 @@ URxvt*scrollWithBuffer:     true
 URxvt*scrollTtyKeypress:    true
 URxvt*saveLines:            30000
 
-URxvt*.font: xft:Gohu GohuFont:pixelsize=14:antialias=true:autohint=true;
-! URxvt*.font: -*-gohufont-medium-*-*-14-*-*-*-*-*-*-*
+! URxvt*.font: xft:Gohu GohuFont:pixelsize=14:antialias=true:autohint=true;
 ! URxvt*.font: -*-terminesspowerline-medium-*-*-*-14-*-*-*-*-*-*-*
-! URxvt*.font: xft:GohuFont Nerd Font Mono:style=uni-14:pixelsize=14;
-! URxvt*.boldFont: -*-gohufont-bold-*-*-*-14-*-*-*-*-*-*-*
+URxvt*.font: -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1,xft:xos4 Terminess Powerline:pixelsize=14
+URxvt*boldfont: -gohu-gohufont-bold-r-normal--14-100-100-100-c-80-iso10646-1
+
 URxvt*.depth: 32
 URxvt*background: [75]#120825
 !URxvt*.intensityStyles: True
