@@ -14,8 +14,8 @@ theme.icon_theme = "Numix-Circle" -- Replace the string for the theme you want t
 -- }}}
 
 -- {{{ Styles
-theme.font      = "xos4 Terminess Powerline Regular 11"
---theme.font      = "Source Code Pro for Powerline 8"
+--theme.font      = "xos4 Terminess Powerline Regular 11"
+theme.font      = "Source Code Pro for Powerline 8"
 --theme.font      = "DejaVu Sans 12"
 --theme.font      = "Gohu GohuFont 11"
 --theme.font = "Monospace 11"

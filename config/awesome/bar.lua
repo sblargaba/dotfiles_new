@@ -3,9 +3,9 @@ local naughty = require("naughty")
 local wibox = require("wibox")
 
 --{{---| Colors |---------------------------------------------------------------
-font    = "xos4 Terminess Powerline Regular 11"
+--font    = "xos4 Terminess Powerline Regular 11"
 --  font    = "Gohu GohuFont 11"
---  font    = "Monospace 11"
+  font    = "Monospace 8"
   markup = '<span font="' .. font .. '">'
   fontcolor = "#FFFFFF"
 

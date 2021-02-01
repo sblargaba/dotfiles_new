@@ -1,0 +1,17 @@
+[user]
+	email = davide.baudracco@bestsecret.com
+	name = Davide Baudracco
+
+[core]
+	autocrlf = input
+  pager = delta
+
+[delta]
+  syntax-theme = GitHub
+  side-by-side = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[pull]
+	rebase = false

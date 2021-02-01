@@ -12,7 +12,7 @@ Programs used:
 
 ---
 #### In Awesome rc.lua
-* compton
+* compton-tryone-git
 * redshift
 * pcmanfm
 * firefox

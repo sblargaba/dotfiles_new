@@ -16,8 +16,8 @@ local bar = require("bar")
 lain = require("lain")
 local markup = lain.util.markup
 -- pomodoro
-local pomodoro = require("./pomodoro/init")
-pomodoro.init()
+-- local pomodoro = require("./pomodoro/init")
+-- pomodoro.init()
 
 menubar.geometry = { y = 540  }
 
@@ -34,6 +34,7 @@ function run_once(cmd)
 run_once("compton")
 run_once("urxvtd")
 run_once("xbindkeys")
+run_once("setxkbmap us -variant altgr-intl")
 --run_once("pulseaudio --start")
 run_once("pcmanfm -d")
 --run_once("tint2")
@@ -86,8 +87,9 @@ active_theme = themes .. "/edge"
 beautiful.init(active_theme .. "/theme.lua")
 
 --terminal = "urxvtc --background-expr 'rootalign keep { load \"/home/davide/wp/wallpaper_urxvt.jpg\" }'"
--- terminal = "terminator"
-terminal = "urxvtc"
+--terminal = "terminator"
+terminal = "alacritty"
+--terminal = "urxvtc"
 -- terminal = "xst"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
@@ -286,9 +288,9 @@ awful.screen.connect_for_each_screen(function(s)
             -- mykeyboardlayout,
             wibox.widget.systray(),
             spr,
-            pomodoro.widget,
+            -- pomodoro.widget,
             spr,
-            pomodoro.icon_widget,
+            -- pomodoro.icon_widget,
             spr,
             mytextclock,
             spr,
