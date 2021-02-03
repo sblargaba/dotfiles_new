@@ -1,4 +1,0 @@
-wfxr/forgit
-#zsh-users/zsh-syntax-highlighting # slow
-zsh-users/zsh-autosuggestions
-romkatv/powerlevel10k
