@@ -1,5 +1,6 @@
+set -k
 # Run "zinit module build" first
-module_path+=( "/home/davide/.config/zsh/zinit/bin/zmodules/Src" )
+module_path+=( "/home/davide/.zinit/bin/zmodules/Src" )
 zmodload zdharma/zplugin
 
 # oh-my-zsh
@@ -10,27 +11,36 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
-source ~/.config/zsh/zinit/bin/zinit.zsh
+source ~/.zinit/bin/zinit.zsh
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
 
 # Set prompt while theme loads
 autoload -U colors && colors
-PS1="%{$fg[black]%}%{$bg[blue]%} ~ %{$reset_color%}%{$fg[blue]%}%{$reset_color%}% "
+PS1="%{$fg[black]%}%{$bg[blue]%} ~ %{$reset_color%}%{$fg[blue]%}%{$reset_color%}%  "
 
-# Wait until autosuggestions is available
-zinit load zsh-users/zsh-autosuggestions
-
-# Load other in the background
+# Load plugins in the background
 zinit wait lucid for \
+    zsh-users/zsh-autosuggestions \
     romkatv/powerlevel10k \
     wfxr/forgit \
     OMZ::plugins/fzf/fzf.plugin.zsh \
+    OMZ::plugins/taskwarrior/taskwarrior.plugin.zsh \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma/fast-syntax-highlighting \
+    zdharma/fast-syntax-highlighting
 
-
-EDITOR='vim'
+export EDITOR='vim'
 XDG_CONFIG_HOME=${HOME}/.config
+
+# Set terminal window title to current dir
+precmd () {print -Pn "\e]0;${PWD/#$HOME/~}" }
+preexec() {print -Pn "\e]0;[$1]\a"}
+
+# Navigate autocompletion menu
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+# Case insensitive autocompletion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+setopt no_list_ambiguous
 
 # FZF
 FZF_BASE=/usr/bin/fzf
@@ -50,6 +60,7 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 # Autocompletion fish style
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="?(#c50,)"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # History
 HISTFILE=~/.zsh_history
@@ -59,8 +70,14 @@ setopt inc_append_history
 setopt share_history
 setopt extended_history
 setopt hist_ignore_all_dups
+setopt HIST_IGNORE_SPACE
 
-# autoload -U +X bashcompinit && bashcompinit ??
+# CD History
+setopt AUTO_PUSHD
+setopt PUSHD_MINUS
+
+autoload -U +X bashcompinit && bashcompinit
+#autoload -U compinit && compinit
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -80,16 +97,19 @@ bindkey '^[[D'    backward-char                 # left       move cursor one cha
 bindkey '^[[C'    forward-char                  # right      move cursor one char forward
 bindkey '^[[A'    up-line-or-beginning-search   # up         prev command in history
 bindkey '^[[B'    down-line-or-beginning-search # down       next command in history
+bindkey -M menuselect '^[[Z' reverse-menu-complete # shift+tab menu navigation
 
 # Aliases
 alias weather="curl -s wttr.in/Granada | head -n 37 && curl -s wttr.in/Moon | head -n 24"
 alias scl="$HOME/.config/screenlayout.sh"
 alias shrug="echo '¯\_(ツ)_/¯'"
 alias cat="bat -p --theme='Monokai Extended Light'"
-alias subl=subl3
 alias k=kubectl
 alias kns=kubens
 alias xmind="PATH=\"/usr/lib/jvm/java-8-openjdk/jre/bin/:$PATH\" XMind"
+alias ssh="env TERM=xterm-256color ssh"
+function based() { echo "$1" | base64 -d && echo }
+
 
 ##### STARTX
 if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]

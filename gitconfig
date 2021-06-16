@@ -7,8 +7,8 @@
   pager = delta
 
 [delta]
-  syntax-theme = GitHub
-  side-by-side = true
+  syntax-theme = Monokai Extended Light
+  line-numbers = true
 
 [interactive]
   diffFilter = delta --color-only

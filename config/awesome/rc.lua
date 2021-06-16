@@ -35,6 +35,7 @@ run_once("compton")
 run_once("urxvtd")
 run_once("xbindkeys")
 run_once("setxkbmap us -variant altgr-intl")
+run_once("xmodmap ~/.Xmodmap")
 --run_once("pulseaudio --start")
 run_once("pcmanfm -d")
 --run_once("tint2")
@@ -45,6 +46,7 @@ run_once("nm-applet")
 run_once("redshift")
 run_once("xset r rate 200 30")
 run_once("clipit")
+run_once("inputplug -c ~/dotfiles/keyboard.sh")
 -- }}}
 
 -- {{{ Localization
@@ -427,7 +429,9 @@ clientkeys = awful.util.table.join(
         {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
-    awful.key({ "Mod1"            }, "F4",      function (c) c:kill()                         end,
+    awful.key({ "Mod1"            }, "F4",     function (c) c:kill()                         end,
+              {description = "close", group = "client"}),
+    awful.key({ modkey, "Mod1"    }, "e",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),

@@ -22,8 +22,19 @@
    XF86AudioMute
 # Toggle microphone  mute
 #"pamixer --toggle-mute mute; echo 'volwidget.bar.update()' | awesome-client -"
-"pactl set-source-mute @DEFAULT_SOURCE@ toggle; /home/davide/dotfiles/key_notify.sh 'Mic muted' | awesome-client"
+"pactl set-source-mute @DEFAULT_SOURCE@ toggle; /home/davide/dotfiles/key_notify.sh 'Mic' | awesome-client"
    Mod4+c
+
+
+# Next song XF86AudioNext
+"playerctl next"
+   XF86AudioNext
+# Previous song XF86AudioPrev
+"playerctl previous"
+   XF86AudioPrev
+# Toggle pause
+"playerctl play-pause; /home/davide/dotfiles/key_notify.sh 'Player' | awesome-client"
+   XF86AudioPlay
 
 # Lock screen
 "i3lock -o --fuzzy"
